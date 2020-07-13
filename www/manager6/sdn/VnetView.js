@@ -98,19 +98,9 @@ Ext.define('PVE.sdn.VnetView', {
 		    dataIndex: 'vlanaware',
 		},
 		{
-		    header: 'IPv4/CIDR',
+		    header: 'Subnets',
 		    flex: 1,
-		    dataIndex: 'ipv4',
-		},
-		{
-		    header: 'IPv6/CIDR',
-		    flex: 1,
-		    dataIndex: 'ipv6',
-		},
-		{
-		    header: 'MAC',
-		    flex: 1,
-		    dataIndex: 'mac',
+		    dataIndex: 'subnets',
 		},
 	    ],
 	    listeners: {
@@ -126,9 +116,7 @@ Ext.define('PVE.sdn.VnetView', {
 	extend: 'Ext.data.Model',
 	fields: [
 	    'alias',
-	    'ipv4',
-	    'ipv6',
-	    'mac',
+	    'subnets',
 	    'tag',
 	    'type',
 	    'vnet',
