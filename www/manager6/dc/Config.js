@@ -176,6 +176,14 @@ Ext.define('PVE.dc.Config', {
 		    hidden: true,
 		    iconCls: 'fa fa-network-wired',
 		    itemId: 'sdnvnet',
+		},
+		{
+		    xtype: 'pveSDNSubnetView',
+		    groups: ['sdn'],
+		    title: gettext('Subnets'),
+		    hidden: true,
+		    iconCls: 'fa fa-network-wired',
+		    itemId: 'sdnsubnet'
 		});
 	    }
 

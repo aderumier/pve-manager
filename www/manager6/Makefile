@@ -226,6 +226,8 @@ JSSRC= 							\
 	sdn/StatusView.js				\
 	sdn/VnetEdit.js					\
 	sdn/VnetView.js					\
+	sdn/SubnetEdit.js					\
+	sdn/SubnetView.js					\
 	sdn/ZoneContentView.js				\
 	sdn/ZoneView.js					\
 	sdn/controllers/Base.js				\
