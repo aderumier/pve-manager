@@ -79,9 +79,14 @@ Ext.define('PVE.sdn.SubnetView', {
 		    dataIndex: 'gateway',
 		},
 		{
-		    header: gettext('Snat'),
+		    header: 'SNAT',
 		    flex: 1,
 		    dataIndex: 'snat',
+		},
+		{
+		    header: 'Ipam',
+		    flex: 1,
+		    dataIndex: 'ipam',
 		}
 	    ],
 	    listeners: {

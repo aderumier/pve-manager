@@ -52,6 +52,7 @@ JSSRC= 							\
 	form/QemuBiosSelector.js			\
 	form/SDNControllerSelector.js			\
 	form/SDNZoneSelector.js				\
+	form/SDNIpamSelector.js				\
 	form/ScsiHwSelector.js				\
 	form/SecurityGroupSelector.js			\
 	form/SnapshotSelector.js			\
@@ -232,6 +233,10 @@ JSSRC= 							\
 	sdn/ZoneView.js					\
 	sdn/controllers/Base.js				\
 	sdn/controllers/EvpnEdit.js			\
+        sdn/IpamView.js                                 \
+        sdn/ipams/Base.js                               \
+        sdn/ipams/NetboxEdit.js                         \
+        sdn/ipams/PhpIpamEdit.js                        \
 	sdn/zones/Base.js				\
 	sdn/zones/EvpnEdit.js				\
 	sdn/zones/QinQEdit.js				\

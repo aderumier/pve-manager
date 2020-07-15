@@ -853,6 +853,23 @@ Ext.define('PVE.Utils', {
 	},
     },
 
+    sdnipamSchema: {
+	ipam: {
+	     name: 'ipam',
+	     hideAdd: true
+	},
+	netbox: {
+	    name: 'Netbox',
+	    ipanel: 'NetboxInputPanel',
+	    faIcon: 'th'
+	},
+	phpipam: {
+	    name: 'PhpIpam',
+	    ipanel: 'PhpIpamInputPanel',
+	    faIcon: 'th'
+	},
+    },
+
     format_sdnvnet_type: function(value, md, record) {
 	var schema = PVE.Utils.sdnvnetSchema[value];
 	if (schema) {
@@ -871,6 +888,14 @@ Ext.define('PVE.Utils', {
 
     format_sdncontroller_type: function(value, md, record) {
 	var schema = PVE.Utils.sdncontrollerSchema[value];
+	if (schema) {
+	    return schema.name;
+	}
+	return Proxmox.Utils.unknownText;
+    },
+
+    format_sdnipam_type: function(value, md, record) {
+	var schema = PVE.Utils.sdnipamSchema[value];
 	if (schema) {
 	    return schema.name;
 	}

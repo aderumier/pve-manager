@@ -184,6 +184,14 @@ Ext.define('PVE.dc.Config', {
 		    hidden: true,
 		    iconCls: 'fa fa-network-wired',
 		    itemId: 'sdnsubnet'
+		},
+		{
+		    xtype: 'pveSDNIpamView',
+		    groups: ['sdn'],
+		    title: gettext('Ipams'),
+		    hidden: true,
+		    iconCls: 'fa fa-network-wired',
+		    itemId: 'sdnipam'
 		});
 	    }
 
