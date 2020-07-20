@@ -51,7 +51,7 @@ Ext.define('PVE.sdn.SubnetInputPanel', {
             fieldLabel: gettext('Ipam'),
             name: 'ipam',
             value: '',
-            allowBlank: false,
+            allowBlank: true,
         },
     ]
 });
