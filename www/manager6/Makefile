@@ -236,6 +236,7 @@ JSSRC= 							\
         sdn/IpamView.js                                 \
         sdn/ipams/Base.js                               \
         sdn/ipams/NetboxEdit.js                         \
+        sdn/ipams/PVEIpamEdit.js                        \
         sdn/ipams/PhpIpamEdit.js                        \
 	sdn/zones/Base.js				\
 	sdn/zones/EvpnEdit.js				\

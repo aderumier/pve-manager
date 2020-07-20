@@ -858,6 +858,11 @@ Ext.define('PVE.Utils', {
 	     name: 'ipam',
 	     hideAdd: true
 	},
+	pve: {
+	    name: 'PVE',
+	    ipanel: 'PVEIpamInputPanel',
+	    faIcon: 'th'
+	},
 	netbox: {
 	    name: 'Netbox',
 	    ipanel: 'NetboxInputPanel',
