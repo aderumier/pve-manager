@@ -53,6 +53,7 @@ JSSRC= 							\
 	form/SDNControllerSelector.js			\
 	form/SDNZoneSelector.js				\
 	form/SDNIpamSelector.js				\
+	form/SDNDnsSelector.js				\
 	form/ScsiHwSelector.js				\
 	form/SecurityGroupSelector.js			\
 	form/SnapshotSelector.js			\
@@ -238,6 +239,9 @@ JSSRC= 							\
         sdn/ipams/NetboxEdit.js                         \
         sdn/ipams/PVEIpamEdit.js                        \
         sdn/ipams/PhpIpamEdit.js                        \
+        sdn/DnsView.js                                 \
+        sdn/dns/Base.js                               \
+        sdn/dns/PowerdnsEdit.js                         \
 	sdn/zones/Base.js				\
 	sdn/zones/EvpnEdit.js				\
 	sdn/zones/QinQEdit.js				\

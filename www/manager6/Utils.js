@@ -875,6 +875,18 @@ Ext.define('PVE.Utils', {
 	},
     },
 
+    sdndnsSchema: {
+	dns: {
+	     name: 'dns',
+	     hideAdd: true
+	},
+	powerdns: {
+	    name: 'powerdns',
+	    ipanel: 'PowerdnsInputPanel',
+	    faIcon: 'th'
+	},
+    },
+
     format_sdnvnet_type: function(value, md, record) {
 	var schema = PVE.Utils.sdnvnetSchema[value];
 	if (schema) {
@@ -901,6 +913,14 @@ Ext.define('PVE.Utils', {
 
     format_sdnipam_type: function(value, md, record) {
 	var schema = PVE.Utils.sdnipamSchema[value];
+	if (schema) {
+	    return schema.name;
+	}
+	return Proxmox.Utils.unknownText;
+    },
+
+    format_sdndns_type: function(value, md, record) {
+	var schema = PVE.Utils.sdndnsSchema[value];
 	if (schema) {
 	    return schema.name;
 	}

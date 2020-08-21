@@ -192,6 +192,14 @@ Ext.define('PVE.dc.Config', {
 		    hidden: true,
 		    iconCls: 'fa fa-network-wired',
 		    itemId: 'sdnipam'
+		},
+		{
+		    xtype: 'pveSDNDnsView',
+		    groups: ['sdn'],
+		    title: gettext('Dns'),
+		    hidden: true,
+		    iconCls: 'fa fa-network-wired',
+		    itemId: 'sdndns'
 		});
 	    }
 
