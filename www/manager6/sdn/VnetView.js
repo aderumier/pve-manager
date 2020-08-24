@@ -96,12 +96,7 @@ Ext.define('PVE.sdn.VnetView', {
 		    header: gettext('VLAN Aware'),
 		    flex: 1,
 		    dataIndex: 'vlanaware',
-		},
-		{
-		    header: 'Subnets',
-		    flex: 1,
-		    dataIndex: 'subnets',
-		},
+		}
 	    ],
 	    listeners: {
 		activate: reload,
@@ -111,17 +106,4 @@ Ext.define('PVE.sdn.VnetView', {
 
 	me.callParent();
     },
-}, function() {
-    Ext.define('pve-sdn-vnet', {
-	extend: 'Ext.data.Model',
-	fields: [
-	    'alias',
-	    'subnets',
-	    'tag',
-	    'type',
-	    'vnet',
-	    'zone',
-	],
-	idProperty: 'vnet',
-    });
 });

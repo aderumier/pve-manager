@@ -52,6 +52,7 @@ JSSRC= 							\
 	form/QemuBiosSelector.js			\
 	form/SDNControllerSelector.js			\
 	form/SDNZoneSelector.js				\
+	form/SDNVnetSelector.js				\
 	form/SDNIpamSelector.js				\
 	form/SDNDnsSelector.js				\
 	form/ScsiHwSelector.js				\

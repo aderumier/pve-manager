@@ -32,6 +32,13 @@ Ext.define('PVE.sdn.SubnetInputPanel', {
 	    allowBlank: false,
 	    fieldLabel: gettext('Subnet'),
 	},
+        {
+            xtype: 'pveSDNVnetSelector',
+            fieldLabel: gettext('Vnet'),
+            name: 'vnet',
+            value: '',
+            allowBlank: true,
+        },
 	{
 	    xtype: 'textfield',
 	    name: 'gateway',

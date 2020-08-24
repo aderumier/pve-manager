@@ -74,6 +74,11 @@ Ext.define('PVE.sdn.SubnetView', {
 		    dataIndex: 'cidr'
 		},
 		{
+		    header: gettext('Vnet'),
+		    flex: 1,
+		    dataIndex: 'vnet',
+		},
+		{
 		    header: gettext('Gateway'),
 		    flex: 1,
 		    dataIndex: 'gateway',

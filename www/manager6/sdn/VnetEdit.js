@@ -61,13 +61,7 @@ Ext.define('PVE.sdn.VnetInputPanel', {
 	    uncheckedValue: 0,
 	    checked: false,
 	    fieldLabel: gettext('VLAN Aware'),
-	},
-	{
-	    xtype: 'textfield',
-	    name: 'subnets',
-	    fieldLabel: gettext('Subnets'),
-	    allowBlank: true,
-	},
+	}
     ]
 });
 
