@@ -53,6 +53,41 @@ Ext.define('PVE.sdn.SubnetInputPanel', {
             value: '',
             allowBlank: true,
         },
+        {
+            xtype: 'pveSDNDnsSelector',
+            fieldLabel: gettext('Dns server'),
+            name: 'dns',
+            value: '',
+            allowBlank: true,
+        },
+	{
+	    xtype: 'proxmoxtextfield',
+	    name: 'dnszone',
+	    skipEmptyText: true,
+	    fieldLabel: gettext('DNS zone'),
+	    allowBlank: true
+	},
+	{
+	    xtype: 'proxmoxtextfield',
+	    name: 'dnszoneprefix',
+	    skipEmptyText: true,
+	    fieldLabel: gettext('DNS zone prefix'),
+	    allowBlank: true
+	},
+        {
+            xtype: 'pveSDNDnsSelector',
+            fieldLabel: gettext('Reverse Dns server'),
+            name: 'reversedns',
+            value: '',
+            allowBlank: true,
+        },
+	{
+	    xtype: 'proxmoxtextfield',
+	    name: 'reversednszone',
+	    skipEmptyText: true,
+	    fieldLabel: gettext('Reverse DNS zone'),
+	    allowBlank: true
+	},
     ]
 });
 
