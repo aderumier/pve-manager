@@ -7,6 +7,8 @@ Ext.define('PVE.sdn.VnetView', {
     stateful: true,
     stateId: 'grid-sdn-vnet',
 
+    subnetview_panel: undefined,
+
     initComponent: function() {
 	let me = this;
 
@@ -101,9 +103,17 @@ Ext.define('PVE.sdn.VnetView', {
 	    listeners: {
 		activate: reload,
 		itemdblclick: run_editor,
+		show: reload,
+		select: function(sm, rec) {
+		    var url = '/cluster/sdn/vnets/' + rec.data.vnet + '/subnets';
+		    me.subnetview_panel.setBaseUrl(url);
+		},
+		deselect: function() {
+		    me.subnetview_panel.setBaseUrl(undefined);
+		},
 	    },
 	});
-
+	store.load();
 	me.callParent();
     },
 });

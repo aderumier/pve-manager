@@ -32,13 +32,6 @@ Ext.define('PVE.sdn.SubnetInputPanel', {
 	    allowBlank: false,
 	    fieldLabel: gettext('Subnet'),
 	},
-        {
-            xtype: 'pveSDNVnetSelector',
-            fieldLabel: gettext('Vnet'),
-            name: 'vnet',
-            value: '',
-            allowBlank: true,
-        },
 	{
 	    xtype: 'textfield',
 	    name: 'gateway',
@@ -107,16 +100,18 @@ Ext.define('PVE.sdn.SubnetEdit', {
 
     width: 350,
 
+    base_url: undefined,
+
     initComponent: function() {
 	var me = this;
 
 	me.isCreate = me.subnet === undefined;
 
 	if (me.isCreate) {
-	    me.url = '/api2/extjs/cluster/sdn/subnets';
+	    me.url = me.base_url;
 	    me.method = 'POST';
 	} else {
-	    me.url = '/api2/extjs/cluster/sdn/subnets/' + me.subnet;
+	    me.url = me.base_url + '/' + me.subnet;
 	    me.method = 'PUT';
 	}
 

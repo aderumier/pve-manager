@@ -5,21 +5,38 @@ Ext.define('PVE.sdn.SubnetView', {
     stateful: true,
     stateId: 'grid-sdn-subnet',
 
+    base_url: undefined,
+
+    remove_btn: undefined,
+
+    setBaseUrl: function(url) {
+        var me = this;
+
+        me.base_url = url;
+
+        if (url === undefined) {
+            me.store.removeAll();
+        } else {
+            me.remove_btn.baseurl = url + '/';
+            me.store.setProxy({
+                type: 'proxmox',
+                url: '/api2/json/' + url
+            });
+
+            me.store.load();
+        }
+    },
+
     initComponent : function() {
 	let me = this;
 
-	let store = new Ext.data.Store({
-	    model: 'pve-sdn-subnet',
-	    proxy: {
-                type: 'proxmox',
-		url: "/api2/json/cluster/sdn/subnets"
-	    },
-	    sorters: {
-		property: 'subnet',
-		order: 'DESC'
-	    }
-	});
-	let reload = () => store.load();
+        var store = new Ext.data.Store({
+            model: 'pve-sdn-subnet'
+        });
+
+        var reload = function() {
+            store.load();
+        };
 
 	let sm = Ext.create('Ext.selection.RowModel', {});
 
@@ -29,6 +46,7 @@ Ext.define('PVE.sdn.SubnetView', {
 	    let win = Ext.create('PVE.sdn.SubnetEdit',{
 		autoShow: true,
 		subnet: rec.data.subnet,
+		base_url: me.base_url,
 	    });
 	    win.on('destroy', reload);
         };
@@ -40,10 +58,12 @@ Ext.define('PVE.sdn.SubnetView', {
 	    handler: run_editor,
 	});
 
-	let remove_btn = Ext.create('Proxmox.button.StdRemoveButton', {
+	me.remove_btn = Ext.create('Proxmox.button.StdRemoveButton', {
 	    selModel: sm,
-	    baseurl: '/cluster/sdn/subnets/',
-	    callback: reload
+	    baseurl: me.base_url + '/',
+            callback: function() {
+                reload();
+            },
 	});
 
 	Ext.apply(me, {
@@ -59,12 +79,13 @@ Ext.define('PVE.sdn.SubnetView', {
 		    handler: function() {
 			let win = Ext.create('PVE.sdn.SubnetEdit', {
 			    autoShow: true,
+			    base_url: me.base_url,
 			    type: 'subnet',
 			});
 			win.on('destroy', reload);
 		    }
 		},
-		remove_btn,
+		me.remove_btn,
 		edit_btn,
 	    ],
 	    columns: [
@@ -72,11 +93,6 @@ Ext.define('PVE.sdn.SubnetView', {
 		    header: 'ID',
 		    flex: 2,
 		    dataIndex: 'cidr'
-		},
-		{
-		    header: gettext('Vnet'),
-		    flex: 1,
-		    dataIndex: 'vnet',
 		},
 		{
 		    header: gettext('Gateway'),
@@ -101,6 +117,10 @@ Ext.define('PVE.sdn.SubnetView', {
 	});
 
 	me.callParent();
+
+        if (me.base_url) {
+            me.setBaseUrl(me.base_url); // load
+        }
     }
 }, function() {
 

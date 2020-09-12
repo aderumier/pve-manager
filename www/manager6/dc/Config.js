@@ -170,20 +170,12 @@ Ext.define('PVE.dc.Config', {
 		    itemId: 'sdnzone',
 		},
 		{
-		    xtype: 'pveSDNVnetView',
+		    xtype: 'pveSDNVnet',
 		    groups: ['sdn'],
 		    title: gettext('Vnets'),
 		    hidden: true,
 		    iconCls: 'fa fa-network-wired',
 		    itemId: 'sdnvnet',
-		},
-		{
-		    xtype: 'pveSDNSubnetView',
-		    groups: ['sdn'],
-		    title: gettext('Subnets'),
-		    hidden: true,
-		    iconCls: 'fa fa-network-wired',
-		    itemId: 'sdnsubnet'
 		},
 		{
 		    xtype: 'pveSDNIpamView',
