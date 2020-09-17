@@ -124,7 +124,7 @@ Ext.define('PVE.sdn.ControllerView', {
 		itemdblclick: run_editor,
 	    },
 	});
-
+	store.load();
 	me.callParent();
     },
 });

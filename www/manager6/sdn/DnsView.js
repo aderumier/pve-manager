@@ -126,6 +126,7 @@ Ext.define('PVE.sdn.DnsView', {
 	    }
 	});
 
+	store.load();
 	me.callParent();
     }
 });

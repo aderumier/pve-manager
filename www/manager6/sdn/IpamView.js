@@ -126,6 +126,8 @@ Ext.define('PVE.sdn.IpamView', {
 	    }
 	});
 
+	store.load();
 	me.callParent();
+
     }
 });

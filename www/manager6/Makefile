@@ -234,6 +234,7 @@ JSSRC= 							\
 	sdn/SubnetView.js				\
 	sdn/ZoneContentView.js				\
 	sdn/ZoneView.js					\
+        sdn/OptionsPanel.js				\
 	sdn/controllers/Base.js				\
 	sdn/controllers/EvpnEdit.js			\
         sdn/IpamView.js                                 \
