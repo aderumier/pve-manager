@@ -46,12 +46,14 @@ Ext.define('PVE.sdn.SubnetInputPanel', {
 	    checked: false,
 	    fieldLabel: 'SNAT'
 	},
+    ],
+    advancedItems: [
         {
             xtype: 'pveSDNIpamSelector',
             fieldLabel: gettext('Ipam'),
             name: 'ipam',
-            value: '',
-            allowBlank: true,
+            value: 'pve',
+            allowBlank: false,
         },
         {
             xtype: 'pveSDNDnsSelector',

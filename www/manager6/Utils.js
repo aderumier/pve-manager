@@ -861,7 +861,8 @@ Ext.define('PVE.Utils', {
 	pve: {
 	    name: 'PVE',
 	    ipanel: 'PVEIpamInputPanel',
-	    faIcon: 'th'
+	    faIcon: 'th',
+	    hideAdd: true
 	},
 	netbox: {
 	    name: 'Netbox',
