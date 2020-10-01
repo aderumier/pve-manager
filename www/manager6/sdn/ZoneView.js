@@ -31,7 +31,7 @@ Ext.define('PVE.sdn.ZoneView', {
 	    model: 'pve-sdn-zone',
 	    proxy: {
                 type: 'proxmox',
-		url: "/api2/json/cluster/sdn/zones",
+		url: "/api2/json/cluster/sdn/zones?pending=1",
 	    },
 	    sorters: {
 		property: 'zone',
@@ -44,6 +44,16 @@ Ext.define('PVE.sdn.ZoneView', {
 	};
 
 	let sm = Ext.create('Ext.selection.RowModel', {});
+
+	var set_button_status = function() {
+	    var rec = me.selModel.getSelection()[0];
+
+	    if (!rec || rec.data.state === 'deleted') {
+		edit_btn.disable();
+		remove_btn.disable();
+ 		return;
+ 	    }
+	};
 
 	let run_editor = function() {
 	    let rec = sm.getSelection()[0];
@@ -109,27 +119,55 @@ Ext.define('PVE.sdn.ZoneView', {
 		    header: 'ID',
 		    flex: 2,
 		    dataIndex: 'zone',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'zone', 1);
+		    }
 		},
 		{
 		    header: gettext('Type'),
 		    flex: 1,
 		    dataIndex: 'type',
-		    renderer: PVE.Utils.format_sdnzone_type,
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'type', 1);
+		    }
 		},
 		{
 		    header: 'MTU',
 		    flex: 1,
 		    dataIndex: 'mtu',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'mtu');
+		    }
 		},
 		{
 		    header: gettext('Nodes'),
 		    flex: 3,
 		    dataIndex: 'nodes',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'nodes');
+		    }
 		},
+		{
+		    header: gettext('Pending'),
+		    flex: 3,
+		    dataIndex: 'pending',
+		    renderer: function(value, metaData, rec) {
+			if(value !== undefined ) {
+			    delete value.nodes;
+			    delete value.zone;
+			    delete value.type;
+			    delete value.mtu;
+			    if(!Ext.Object.isEmpty(value)){
+				return JSON.stringify(value);
+			    }
+			}
+			return '';
+		    }
 	    ],
 	    listeners: {
 		activate: reload,
 		itemdblclick: run_editor,
+		selectionchange: set_button_status
 	    },
 	});
 

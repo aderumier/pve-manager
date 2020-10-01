@@ -31,7 +31,7 @@ Ext.define('PVE.sdn.ControllerView', {
 	    model: 'pve-sdn-controller',
 	    proxy: {
                 type: 'proxmox',
-		url: "/api2/json/cluster/sdn/controllers",
+		url: "/api2/json/cluster/sdn/controllers?pending=1",
 	    },
 	    sorters: {
 		property: 'controller',
@@ -44,6 +44,16 @@ Ext.define('PVE.sdn.ControllerView', {
 	};
 
 	var sm = Ext.create('Ext.selection.RowModel', {});
+
+	var set_button_status = function() {
+	    var rec = me.selModel.getSelection()[0];
+
+	    if (!rec || rec.data.state === 'deleted') {
+		edit_btn.disable();
+		remove_btn.disable();
+		return;
+	    }
+	};
 
 	var run_editor = function() {
 	    var rec = sm.getSelection()[0];
@@ -110,14 +120,35 @@ Ext.define('PVE.sdn.ControllerView', {
 		    flex: 2,
 		    sortable: true,
 		    dataIndex: 'controller',
+		    dataIndex: 'controller',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'controller', 1);
+		    }
 		},
 		{
 		    header: gettext('Type'),
 		    flex: 1,
 		    sortable: true,
 		    dataIndex: 'type',
-		    renderer: PVE.Utils.format_sdncontroller_type,
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'type', 1);
+		    }
 		},
+		{
+		    header: gettext('Pending'),
+		    flex: 3,
+		    dataIndex: 'pending',
+		    renderer: function(value, metaData, rec) {
+			if(value !== undefined ) {
+			    delete value.controller;
+			    delete value.type;
+			    if(!Ext.Object.isEmpty(value)){
+				return JSON.stringify(value);
+			    }
+			}
+			return '';
+		    }
+		}
 	    ],
 	    listeners: {
 		activate: reload,

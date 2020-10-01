@@ -175,6 +175,35 @@ Ext.define('PVE.Utils', {
 	'HEALTH_ERR': 'critical',
     },
 
+    render_sdn_pending: function(rec,value,key, index) {
+	if (rec.data.state === 'deleted') {
+	    if (value === undefined) {
+		return '';
+	    } else {
+		return '<div style="text-decoration: line-through;">'+ value +'</div>';
+	    }
+
+	} else if (rec.data.state === 'new') {
+	    if(index === undefined) {
+		value = rec.data.pending[key];
+	    }
+	    if (value === undefined || value === null) {
+		value = '';
+	    }
+	    return '<div style="color:green">' + value + '</div>';
+	} else if (rec.data.state === 'changed') {
+	    if (value === undefined || value === null) {
+		value = '<br>';
+	    }
+	    if (rec.data.pending[key] === undefined || rec.data.pending[key] === null) {
+		rec.data.pending[key] = value;
+	    }
+	    return '<div style="text-decoration: line-through;">'+ value +'</div>' + '<div style="color:orange">' + rec.data.pending[key] + '</div>';
+	} else {
+	    return value;
+	}
+    },
+
     render_ceph_health: function(healthObj) {
 	var state = {
 	    iconCls: PVE.Utils.get_health_icon(),

@@ -20,7 +20,7 @@ Ext.define('PVE.sdn.SubnetView', {
             me.remove_btn.baseurl = url + '/';
             me.store.setProxy({
                 type: 'proxmox',
-                url: '/api2/json/' + url
+                url: '/api2/json/' + url + '?pending=1'
             });
 
             me.store.load();
@@ -39,6 +39,16 @@ Ext.define('PVE.sdn.SubnetView', {
         };
 
 	let sm = Ext.create('Ext.selection.RowModel', {});
+
+	var set_button_status = function() {
+	    var rec = me.selModel.getSelection()[0];
+
+	    if (!rec || rec.data.state === 'deleted') {
+		edit_btn.disable();
+		remove_btn.disable();
+		return;
+	    }
+	};
 
         let run_editor = function() {
 	    let rec = sm.getSelection()[0];
@@ -92,27 +102,58 @@ Ext.define('PVE.sdn.SubnetView', {
 		{
 		    header: 'ID',
 		    flex: 2,
-		    dataIndex: 'cidr'
+		    dataIndex: 'cidr',
+                    renderer: function(value, metaData, rec) {
+                        return PVE.Utils.render_sdn_pending(rec, value, 'cidr', 1);
+                    }
 		},
 		{
 		    header: gettext('Gateway'),
 		    flex: 1,
 		    dataIndex: 'gateway',
+                    renderer: function(value, metaData, rec) {
+                        return PVE.Utils.render_sdn_pending(rec, value, 'gateway');
+                    }
 		},
 		{
 		    header: 'SNAT',
 		    flex: 1,
 		    dataIndex: 'snat',
+                    renderer: function(value, metaData, rec) {
+                        return PVE.Utils.render_sdn_pending(rec, value, 'snat');
+                    }
 		},
 		{
 		    header: 'Ipam',
 		    flex: 1,
 		    dataIndex: 'ipam',
-		}
+                    renderer: function(value, metaData, rec) {
+                        return PVE.Utils.render_sdn_pending(rec, value, 'ipam');
+                    }
+		},
+                {
+                    header: gettext('Pending'),
+                    flex: 3,
+                    dataIndex: 'pending',
+                    renderer: function(value, metaData, rec) {
+                        if(value !== undefined ) {
+                                delete value.cidr;
+                                delete value.gateway;
+                                delete value.snat;
+                                delete value.ipam;
+				if(!Ext.Object.isEmpty(value)){
+				    return JSON.stringify(value);
+				}
+                        }
+                        return '';
+                    }
+                },
+
 	    ],
 	    listeners: {
 		activate: reload,
-		itemdblclick: run_editor
+		itemdblclick: run_editor,
+                selectionchange: set_button_status
 	    }
 	});
 
