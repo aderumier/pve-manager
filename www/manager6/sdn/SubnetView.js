@@ -124,30 +124,13 @@ Ext.define('PVE.sdn.SubnetView', {
                     }
 		},
 		{
-		    header: 'Ipam',
+		    header: gettext('Dns prefix'),
 		    flex: 1,
-		    dataIndex: 'ipam',
+		    dataIndex: 'dnszoneprefix',
                     renderer: function(value, metaData, rec) {
-                        return PVE.Utils.render_sdn_pending(rec, value, 'ipam');
+                        return PVE.Utils.render_sdn_pending(rec, value, 'dnszoneprefix');
                     }
 		},
-                {
-                    header: gettext('Pending'),
-                    flex: 3,
-                    dataIndex: 'pending',
-                    renderer: function(value, metaData, rec) {
-                        if(value !== undefined ) {
-                                delete value.cidr;
-                                delete value.gateway;
-                                delete value.snat;
-                                delete value.ipam;
-				if(!Ext.Object.isEmpty(value)){
-				    return JSON.stringify(value);
-				}
-                        }
-                        return '';
-                    }
-                },
 
 	    ],
 	    listeners: {

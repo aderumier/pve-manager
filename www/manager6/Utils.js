@@ -178,7 +178,7 @@ Ext.define('PVE.Utils', {
     render_sdn_pending: function(rec,value,key, index) {
 	if (rec.data.state === 'deleted') {
 	    if (value === undefined) {
-		return '';
+		return ' ';
 	    } else {
 		return '<div style="text-decoration: line-through;">'+ value +'</div>';
 	    }
@@ -188,7 +188,7 @@ Ext.define('PVE.Utils', {
 		value = rec.data.pending[key];
 	    }
 	    if (value === undefined || value === null) {
-		value = '';
+		value = ' ';
 	    }
 	    return '<div style="color:green">' + value + '</div>';
 	} else if (rec.data.state === 'changed') {

@@ -28,6 +28,37 @@ Ext.define('PVE.sdn.zones.BaseEdit', {
     initComponent: function() {
 	var me = this;
 
+	me.advancedItems = [
+	    {
+		xtype: 'pveSDNIpamSelector',
+		fieldLabel: gettext('Ipam'),
+		name: 'ipam',
+		value: 'pve',
+		allowBlank: false,
+	    },
+	    {
+		xtype: 'pveSDNDnsSelector',
+		fieldLabel: gettext('Dns server'),
+		name: 'dns',
+		value: '',
+		allowBlank: true,
+	    },
+	    {
+		xtype: 'pveSDNDnsSelector',
+		fieldLabel: gettext('Reverse Dns server'),
+		name: 'reversedns',
+		value: '',
+		allowBlank: true,
+	    },
+	    {
+		xtype: 'proxmoxtextfield',
+		name: 'dnszone',
+		skipEmptyText: true,
+		fieldLabel: gettext('DNS zone'),
+		allowBlank: true
+	    },
+	];
+
 	me.isCreate = !me.zone;
 
 	if (me.isCreate) {

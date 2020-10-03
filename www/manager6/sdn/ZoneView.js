@@ -117,7 +117,7 @@ Ext.define('PVE.sdn.ZoneView', {
 	    columns: [
 		{
 		    header: 'ID',
-		    flex: 2,
+		    width: 100,
 		    dataIndex: 'zone',
 		    renderer: function(value, metaData, rec) {
 			return PVE.Utils.render_sdn_pending(rec, value, 'zone', 1);
@@ -125,7 +125,7 @@ Ext.define('PVE.sdn.ZoneView', {
 		},
 		{
 		    header: gettext('Type'),
-		    flex: 1,
+		    width: 100,
 		    dataIndex: 'type',
 		    renderer: function(value, metaData, rec) {
 			return PVE.Utils.render_sdn_pending(rec, value, 'type', 1);
@@ -133,10 +133,42 @@ Ext.define('PVE.sdn.ZoneView', {
 		},
 		{
 		    header: 'MTU',
-		    flex: 1,
+		    width: 50,
 		    dataIndex: 'mtu',
 		    renderer: function(value, metaData, rec) {
 			return PVE.Utils.render_sdn_pending(rec, value, 'mtu');
+		    }
+		},
+		{
+		    header: 'Ipam',
+		    flex: 3,
+		    dataIndex: 'ipam',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'ipam');
+		    }
+		},
+		{
+		    header: gettext('Domain'),
+		    flex: 3,
+		    dataIndex: 'dnszone',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'dnszone');
+		    }
+		},
+		{
+		    header: gettext('Dns'),
+		    flex: 3,
+		    dataIndex: 'dns',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'dns');
+		    }
+		},
+		{
+		    header: gettext('Reverse dns'),
+		    flex: 3,
+		    dataIndex: 'reversedns',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'reversedns');
 		    }
 		},
 		{
@@ -157,6 +189,10 @@ Ext.define('PVE.sdn.ZoneView', {
 			    delete value.zone;
 			    delete value.type;
 			    delete value.mtu;
+			    delete value.ipam;
+			    delete value.dns;
+			    delete value.reversedns;
+			    delete value.dnszone;
 			    if(!Ext.Object.isEmpty(value)){
 				return JSON.stringify(value);
 			    }

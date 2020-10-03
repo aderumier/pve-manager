@@ -9,14 +9,8 @@ Ext.define('PVE.sdn.VnetInputPanel', {
 	    values.type = 'vnet';
 	}
 
-	if (!values.ipv6) {
-	    delete values.ipv6;
-	}
-	if (!values.ipv4) {
-	    delete values.ipv4;
-	}
-	if (!values.mac) {
-	    delete values.mac;
+	if (!values.vlanaware) {
+	    delete values.vlanaware;
 	}
 
 	return values;
