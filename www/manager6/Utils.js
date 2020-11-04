@@ -880,6 +880,11 @@ Ext.define('PVE.Utils', {
 	    ipanel: 'EvpnInputPanel',
 	    faIcon: 'crosshairs',
 	},
+	bgp: {
+	    name: 'bgp',
+	    ipanel: 'BgpInputPanel',
+	    faIcon: 'crosshairs'
+	},
     },
 
     sdnipamSchema: {

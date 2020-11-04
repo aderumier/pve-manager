@@ -94,6 +94,11 @@ Ext.define('PVE.sdn.zones.BaseEdit', {
 		    if (values.nodes) {
 			values.nodes = values.nodes.split(',');
 		    }
+
+		    if (values.exitnodes) {
+			values.exitnodes = values.exitnodes.split(',');
+		    }
+
 		    values.enable = values.disable ? 0 : 1;
 
 		    ipanel.setValues(values);

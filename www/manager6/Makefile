@@ -237,6 +237,7 @@ JSSRC= 							\
         sdn/OptionsPanel.js				\
 	sdn/controllers/Base.js				\
 	sdn/controllers/EvpnEdit.js			\
+	sdn/controllers/BgpEdit.js			\
         sdn/IpamView.js                                 \
         sdn/ipams/Base.js                               \
         sdn/ipams/NetboxEdit.js                         \

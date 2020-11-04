@@ -135,6 +135,15 @@ Ext.define('PVE.sdn.ControllerView', {
 		    }
 		},
 		{
+		    header: gettext('Node'),
+		    flex: 1,
+		    sortable: true,
+		    dataIndex: 'node',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending(rec, value, 'node', 1);
+		    }
+		},
+		{
 		    header: gettext('Pending'),
 		    flex: 3,
 		    dataIndex: 'pending',
