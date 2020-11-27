@@ -2,7 +2,7 @@ Ext.define('PVE.sdn.ControllerView', {
     extend: 'Ext.grid.GridPanel',
     alias: ['widget.pveSDNControllerView'],
 
-    onlineHelp: 'pvesdn_controller_plugins',
+    onlineHelp: 'pvesdn_config_controllers',
 
     stateful: true,
     stateId: 'grid-sdn-controller',

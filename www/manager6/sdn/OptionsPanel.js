@@ -9,7 +9,7 @@ Ext.define('PVE.sdn.Options', {
         align: 'stretch'
     },
 
-//    onlineHelp: 'pvesdn_config_vnet',
+   onlineHelp: 'pvesdn_config_controllers',
 
    initComponent: function() {
         var me = this;
