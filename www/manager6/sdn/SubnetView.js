@@ -129,8 +129,16 @@ Ext.define('PVE.sdn.SubnetView', {
 		    dataIndex: 'dnszoneprefix',
                     renderer: function(value, metaData, rec) {
                         return PVE.Utils.render_sdn_pending(rec, value, 'dnszoneprefix');
-                    }
-		},
+		    }
+                },
+		{
+		    header: gettext('State'),
+		    width: 100,
+		    dataIndex: 'state',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending_state(rec, value);
+		    }
+		}
 
 	    ],
 	    listeners: {

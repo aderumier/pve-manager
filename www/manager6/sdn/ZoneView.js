@@ -180,25 +180,13 @@ Ext.define('PVE.sdn.ZoneView', {
 		    }
 		},
 		{
-		    header: gettext('Pending'),
-		    flex: 3,
-		    dataIndex: 'pending',
+		    header: gettext('State'),
+		    width: 100,
+		    dataIndex: 'state',
 		    renderer: function(value, metaData, rec) {
-			if(value !== undefined ) {
-			    delete value.nodes;
-			    delete value.zone;
-			    delete value.type;
-			    delete value.mtu;
-			    delete value.ipam;
-			    delete value.dns;
-			    delete value.reversedns;
-			    delete value.dnszone;
-			    if(!Ext.Object.isEmpty(value)){
-				return JSON.stringify(value);
-			    }
-			}
-			return '';
+			return PVE.Utils.render_sdn_pending_state(rec, value);
 		    }
+		}
 	    ],
 	    listeners: {
 		activate: reload,

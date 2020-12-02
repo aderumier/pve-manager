@@ -124,6 +124,14 @@ Ext.define('PVE.sdn.VnetView', {
 		    renderer: function(value, metaData, rec) {
 			return PVE.Utils.render_sdn_pending(rec, value, 'vlanaware');
 		    }
+		},
+		{
+		    header: gettext('State'),
+		    width: 100,
+		    dataIndex: 'state',
+		    renderer: function(value, metaData, rec) {
+			return PVE.Utils.render_sdn_pending_state(rec, value);
+		    }
 		}
 	    ],
 	    listeners: {

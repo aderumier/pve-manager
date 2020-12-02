@@ -176,32 +176,51 @@ Ext.define('PVE.Utils', {
     },
 
     render_sdn_pending: function(rec,value,key, index) {
+	if (rec.data.state === undefined || rec.data.state === null) {
+	    return value;
+	}
+
 	if (rec.data.state === 'deleted') {
 	    if (value === undefined) {
 		return ' ';
 	    } else {
 		return '<div style="text-decoration: line-through;">'+ value +'</div>';
 	    }
-
-	} else if (rec.data.state === 'new') {
-	    if(index === undefined) {
-		value = rec.data.pending[key];
-	    }
-	    if (value === undefined || value === null) {
-		value = ' ';
-	    }
-	    return '<div style="color:green">' + value + '</div>';
-	} else if (rec.data.state === 'changed') {
-	    if (value === undefined || value === null) {
-		value = '<br>';
-	    }
-	    if (rec.data.pending[key] === undefined || rec.data.pending[key] === null) {
-		rec.data.pending[key] = value;
-	    }
-	    return '<div style="text-decoration: line-through;">'+ value +'</div>' + '<div style="color:orange">' + rec.data.pending[key] + '</div>';
 	} else {
-	    return value;
+
+	    if (rec.data.pending[key] !== undefined && rec.data.pending[key] !== null) {
+		if (rec.data.pending[key] === 'deleted') {
+		    return ' ';
+		} else {
+		    return rec.data.pending[key];
+		}
+	    } else {
+		return value;
+	    }
 	}
+	return value;
+    },
+
+    render_sdn_pending_state: function(rec,value) {
+
+	if (value === undefined || value === null) {
+	    return ' ';
+	}
+
+	let icon = `<i class="fa fa-fw fa-refresh warning"></i>`;
+
+	if (value === 'deleted') {
+	    return '<span>' + icon + value + '</span>';
+	}
+
+	let tip = 'Pending apply: <br>';
+
+	for (const [key, keyvalue] of Object.entries(rec.data.pending)) {
+	    if (((rec.data[key] !== undefined && rec.data.pending[key] !== rec.data[key]) || rec.data[key] === undefined)) {
+		tip = tip + `${key}: ${keyvalue} <br>`;
+	    }
+	}
+	return '<span data-qtip="' + tip + '">'+ icon + value + '</span>';
     },
 
     render_ceph_health: function(healthObj) {

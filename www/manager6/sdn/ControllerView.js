@@ -144,18 +144,11 @@ Ext.define('PVE.sdn.ControllerView', {
 		    }
 		},
 		{
-		    header: gettext('Pending'),
-		    flex: 3,
-		    dataIndex: 'pending',
+		    header: gettext('State'),
+		    width: 100,
+		    dataIndex: 'state',
 		    renderer: function(value, metaData, rec) {
-			if(value !== undefined ) {
-			    delete value.controller;
-			    delete value.type;
-			    if(!Ext.Object.isEmpty(value)){
-				return JSON.stringify(value);
-			    }
-			}
-			return '';
+			return PVE.Utils.render_sdn_pending_state(rec, value);
 		    }
 		}
 	    ],
