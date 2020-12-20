@@ -13,6 +13,10 @@ Ext.define('PVE.sdn.VnetInputPanel', {
 	    delete values.vlanaware;
 	}
 
+	if (!values.mac) {
+	    delete values.mac;
+	}
+
 	return values;
     },
 
@@ -56,7 +60,17 @@ Ext.define('PVE.sdn.VnetInputPanel', {
 	    checked: false,
 	    fieldLabel: gettext('VLAN Aware'),
 	}
-    ]
+    ],
+    advancedItems: [
+	{
+	    xtype: 'textfield',
+	    name: 'mac',
+	    fieldLabel: gettext('MAC address'),
+	    vtype: 'MacAddress',
+	    allowBlank: true,
+	    emptyText: 'auto'
+	},
+    ],
 });
 
 Ext.define('PVE.sdn.VnetEdit', {
